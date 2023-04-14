@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5818896275225388004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4013910845747374765}
+  - component: {fileID: 734236480557881206}
+  m_Layer: 0
+  m_Name: Power Beam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4013910845747374765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818896275225388004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734236480557881206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818896275225388004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a34dff5743488f84437d5dd4ad2d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <AllowedTarget>k__BackingField: 01000000
+  <RemoveAfterUsage>k__BackingField: 0
+  <Cost>k__BackingField: 6
+  <Icon>k__BackingField: {fileID: 1664358012696132, guid: 64c85ee59ebf6cb4ba02e44adafcca50,
+    type: 3}
+  <Steps>k__BackingField:
+  - Steps:
+    - StepType: 0
+      VFX: {fileID: 0}
+      Animation: 
+      Delay: 0
+    Wait: 1
+  - Steps:
+    - StepType: 4
+      VFX: {fileID: 9052094474014157690, guid: c28738dd0a6e25744bbd44070f95e164, type: 3}
+      Animation: Cast1
+      Delay: 0
+    Wait: 0
+  - Steps:
+    - StepType: 5
+      VFX: {fileID: 4757651146789025581, guid: da1a0fd55543de944831be1cea028d27, type: 3}
+      Animation: 
+      Delay: 0.2
+    Wait: 1
+  - Steps:
+    - StepType: 6
+      VFX: {fileID: 2231087074592273384, guid: e020609b572e3c44ab01b93a3a1a8b15, type: 3}
+      Animation: Hit
+      Delay: 0
+    - StepType: 9
+      VFX: {fileID: 2231087074592273384, guid: e020609b572e3c44ab01b93a3a1a8b15, type: 3}
+      Animation: Hit
+      Delay: 0
+    - StepType: 8
+      VFX: {fileID: 2231087074592273384, guid: e020609b572e3c44ab01b93a3a1a8b15, type: 3}
+      Animation: Hit
+      Delay: 2
+    Wait: 1
+  - Steps:
+    - StepType: 1
+      VFX: {fileID: 9052094474014157690, guid: c28738dd0a6e25744bbd44070f95e164, type: 3}
+      Animation: Hit
+      Delay: 0
+    Wait: 0

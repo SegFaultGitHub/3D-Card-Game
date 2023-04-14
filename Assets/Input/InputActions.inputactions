@@ -1,0 +1,118 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Globals",
+            "id": "920c043d-8725-4093-a8a8-c7be3288145f",
+            "actions": [
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "d79aab93-93ee-4984-9d41-d306f16622dd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4df28123-0089-4ac4-94e2-190485e21494",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CardSelection",
+            "id": "c3f5bc63-f279-4407-a278-44a1fc0456c0",
+            "actions": [
+                {
+                    "name": "DragCard",
+                    "type": "Button",
+                    "id": "3057098c-f504-4d09-97c9-a388801d4578",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2e026581-513e-4137-8574-32a9e78c1484",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DragCard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "LootSelection",
+            "id": "e3e096c6-a33f-4a58-867c-a309a17b54e1",
+            "actions": [
+                {
+                    "name": "Choose",
+                    "type": "Button",
+                    "id": "136cd9c5-6b5e-4b8a-bdf6-c3a94b7f743d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "aebdcc0d-1fe9-4de6-94d9-0c14a16d9ddb",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CharacterSelection",
+            "id": "9cdbb076-3ab7-42ac-8538-713d6eeef507",
+            "actions": [
+                {
+                    "name": "Choose",
+                    "type": "Button",
+                    "id": "bffc3828-c9ee-4ecf-ab6f-e4acc5adf4fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fb6d8af8-b632-40ed-bd16-1281f83164e6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
