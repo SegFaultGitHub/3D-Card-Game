@@ -31,7 +31,7 @@ namespace Code.Characters {
         private readonly List<OnTake> OnTakeCallbacks;
         private readonly List<OnApplied> OnAppliedCallbacks;
 
-        public void AddCallback(Callback callback, int? duration) {
+        public void AddTempCallback(Callback callback, int? duration) {
             if (duration != null)
                 this.CallbacksTotalTurns += duration.Value;
             switch (callback) {
@@ -107,6 +107,7 @@ namespace Code.Characters {
             public int MaxHealth;
             public int Poison;
             public int Shield;
+            public bool Dead => this.Health <= 0;
 
             public _Stats(Character._Stats stats) {
                 this.MaxHealth = stats.MaxHealth;

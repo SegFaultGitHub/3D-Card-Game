@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using Code.Cards.Collection;
 using Code.Characters;
 using Code.Fight;
 using Code.Map;
 using Code.Map.Misc;
-using Code.Utils;
 using UnityEngine;
 
 public class DebugButton : MonoBehaviour {

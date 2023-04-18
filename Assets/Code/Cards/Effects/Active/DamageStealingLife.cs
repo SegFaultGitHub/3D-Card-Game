@@ -16,26 +16,16 @@ namespace Code.Cards.Effects.Active {
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Damage, player, null, this.Value, short.MaxValue);
-            if (value > this.Value)
-                this.Description = $"{GreenText(value)}{SpriteEffectMapping.Get(Effect.Damage)} "
-                                   + $"{BlueText((int)(this.Ratio * 100))}{{%}}{SpriteEffectMapping.Get(Effect.Heal)}";
-            else if (value < this.Value)
-                this.Description = $"{RedText(value)}{SpriteEffectMapping.Get(Effect.Damage)} "
-                                   + $"{BlueText((int)(this.Ratio * 100))}{{%}}{SpriteEffectMapping.Get(Effect.Heal)}";
-            else
-                this.Description = $"{BlueText(value)}{SpriteEffectMapping.Get(Effect.Damage)} "
-                                   + $"{BlueText(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Heal)}";
+            this.Description = new[] {
+                $"Deals {value}{SpriteEffectMapping.Get(Effect.Damage)}",
+                $"Steals {(int)(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Heart}"
+            };
+            // this.Description = $"{value}{SpriteEffectMapping.Get(Effect.Damage)} "
+            //                    + $"{(int)(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Heal)}";
         }
 
         public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> sideEffects, Character from, Character to) {
-            CardEffectValues damageValues = RunEffect(
-                sideEffects,
-                CallbackType.Damage,
-                from,
-                to,
-                this.Value,
-                short.MaxValue
-            );
+            CardEffectValues damageValues = RunEffect(sideEffects, CallbackType.Damage, from, to, this.Value, short.MaxValue);
             CardEffectValues healValues = RunEffect(
                 sideEffects,
                 CallbackType.Heal,

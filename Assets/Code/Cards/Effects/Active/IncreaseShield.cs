@@ -5,23 +5,25 @@ using Code.Cards.UI;
 using Code.Characters;
 
 namespace Code.Cards.Effects.Active {
-    public class IncreasePoison : CardEffect {
+    public class IncreaseShield : CardEffect {
         private readonly float Ratio;
 
-        public IncreasePoison(float ratio) => this.Ratio = ratio;
+        public IncreaseShield(float ratio) => this.Ratio = ratio;
 
         public override void UpdateDescription(Player player = null) {
-            this.Description = $"{{+}}{(int)(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Poison)}";
+            this.Description = new[] {
+                $"Increase {SpriteEffectMapping.Get(Effect.Shield)} by {(int)(this.Ratio * 100)}{{%}}"
+            };
         }
 
         public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> sideEffects, Character from, Character to) {
-            int poison = (int)(to.Stats.Poison * this.Ratio);
-            return new List<CardEffectValues> { RunEffect(sideEffects, CallbackType.Poison, from, to, poison, 1) };
+            int shield = (int)(to.Stats.Shield * this.Ratio);
+            return new List<CardEffectValues> { RunEffect(sideEffects, CallbackType.Shield, from, to, shield, 1) };
         }
 
         public override void Run(SimulationCharacter from, SimulationCharacter to) {
-            int poison = (int)(to.Stats.Poison * this.Ratio);
-            RunEffect(CallbackType.Poison, from, to, poison, 1);
+            int shield = (int)(to.Stats.Poison * this.Ratio);
+            RunEffect(CallbackType.Shield, from, to, shield, 1);
         }
     }
 }

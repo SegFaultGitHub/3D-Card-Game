@@ -230,11 +230,7 @@ MonoBehaviour:
   AttackZone: {fileID: 3724883906588279958}
   <Name>k__BackingField: 
   <Cards>k__BackingField:
-    BaseDeck:
-    - {fileID: -6025707984105876130, guid: 279027343c77ca14fad118ae18e9296a, type: 3}
-    - {fileID: -803522249019390330, guid: d7fa35fa64a229744bab614f7c31f01e, type: 3}
-    - {fileID: -803522249019390330, guid: d7fa35fa64a229744bab614f7c31f01e, type: 3}
-    - {fileID: -6025707984105876130, guid: 279027343c77ca14fad118ae18e9296a, type: 3}
+    BaseDeck: []
     Deck: []
     InitialHandSize: 3
     CardsDrawnPerTurn: 1

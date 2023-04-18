@@ -6,24 +6,24 @@ using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
 
-namespace Code.Artifacts.Collection {
+namespace Code.Artifacts.Collection.Necromancer {
     public class RottenTooth : Artifact {
         public override void Initialize() {
             this.Name = "Rotten Tooth";
-            this.Description = new List<string> { $"{RottenToothCallback.VALUE}{SpriteEffectMapping.Get(Effect.Poison, Modifier.Plus)}" };
+            this.Description = new List<string> { $"Increase {SpriteEffectMapping.Get(Effect.Poison)} by {Callback.VALUE}" };
         }
 
         public override void Equip(Character character) {
             base.Equip(character);
-            character.AddCallback(new RottenToothCallback());
+            character.AddCallback(new Callback());
         }
 
 
-        private class RottenToothCallback : OnCompute {
+        private class Callback : OnCompute {
             private const int PRIORITY = 0;
             public const int VALUE = 2;
 
-            public RottenToothCallback() : base(PRIORITY, CallbackType.Poison) {}
+            public Callback() : base(PRIORITY, CallbackType.Poison) { }
 
             public override int Run(List<CardEffect.CardEffectValues> _, Character from, Character to, int value) {
                 return value + VALUE;

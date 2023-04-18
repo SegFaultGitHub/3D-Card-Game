@@ -5,14 +5,16 @@ using Code.Characters;
 
 namespace Code.Artifacts.Collection {
     public class NecklaceOfSwiftness : Artifact {
+        private const int VALUE = 1;
+
         public override void Initialize() {
             this.Name = "Necklace Of Swiftness";
-            this.Description = new List<string> { $"{{+}}1{SpriteEffectMapping.Get(Effect.ActionPoint)}" };
+            this.Description = new List<string> { $"Adds {VALUE}{SpriteEffectMapping.Get(Effect.ActionPoint)}" };
         }
 
         public override void Equip(Character character) {
             base.Equip(character);
-            character.Stats.ActionPoints += 1;
+            character.Stats.ActionPoints += VALUE;
         }
     }
 }

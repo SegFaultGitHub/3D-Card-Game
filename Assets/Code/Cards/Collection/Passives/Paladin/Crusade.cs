@@ -5,25 +5,25 @@ using Code.Cards.Effects.Passive;
 using Code.Cards.Enums;
 
 namespace Code.Cards.Collection.Passives.Paladin {
-    public class MasterOfShields : Card {
+    public class Crusade : Card {
         public override void Initialize() {
-            this.Name = $"Master of Poisons {this.Tier}";
+            this.Name = $"Crusade {this.Tier}";
             this.AllowedTarget = new List<Target> { Target.Self };
             this.RemoveAfterUsage = true;
             switch (this.Tier) {
                 case Tier.I:
-                    this.CardEffects = new List<CardEffect> { new DrawOnTakeShield(1) };
+                    this.CardEffects = new List<CardEffect> { new ShieldOnApplyDamage(1) };
                     this.Cost = 3;
                     break;
                 case Tier.II:
-                    this.CardEffects = new List<CardEffect> { new DrawOnTakeShield(1) };
-                    this.Cost = 2;
+                    this.CardEffects = new List<CardEffect> { new ShieldOnApplyDamage(2) };
+                    this.Cost = 3;
                     break;
                 case Tier.III:
-                    this.CardEffects = new List<CardEffect> { new DrawOnTakeShield(1) };
-                    this.Cost = 1;
+                    this.CardEffects = new List<CardEffect> { new ShieldOnApplyDamage(3) };
+                    this.Cost = 3;
                     break;
-                default: throw new Exception($"[MasterOfPoisons:Initialize] Tier {this.Tier} not allowed");
+                default: throw new Exception($"[Crusade:Initialize] Tier {this.Tier} not allowed");
             }
         }
     }

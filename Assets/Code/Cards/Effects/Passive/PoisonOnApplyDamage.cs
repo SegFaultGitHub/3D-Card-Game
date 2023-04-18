@@ -4,25 +4,25 @@ using Code.Callbacks.Enums;
 using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
+using Unity.VisualScripting;
 
 namespace Code.Cards.Effects.Passive {
-    public class PoisonOnDamage : CardEffect {
+    public class PoisonOnApplyDamage : CardEffect {
         private const int PRIORITY = 3;
         private readonly int? Duration;
         private readonly int Value;
 
-        public PoisonOnDamage(int poison, int? duration = null) {
+        public PoisonOnApplyDamage(int poison, int? duration = null) {
             this.Value = poison;
             this.Duration = duration;
         }
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Poison, player, null, this.Value, PRIORITY);
-            this.Description = $"{SpriteEffectMapping.Get(Effect.Damage)} "
-                               + $"{SpriteEffectMapping.Arrow} "
-                               + $"{value}{SpriteEffectMapping.Get(Effect.Poison)}";
-
-            if (this.Duration != null) this.Description += TurnsString(this.Duration.Value);
+            this.Description = new[] {
+                $"Applies {value}{SpriteEffectMapping.Get(Effect.Poison)} when dealing {SpriteEffectMapping.Get(Effect.Damage)}"
+            };
+            if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));
         }
 
         public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _, Character from, Character to) {

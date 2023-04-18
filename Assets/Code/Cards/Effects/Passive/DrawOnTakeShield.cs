@@ -4,49 +4,55 @@ using Code.Callbacks.Enums;
 using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
+using Unity.VisualScripting;
 
 namespace Code.Cards.Effects.Passive {
-    public class DrawOnApplyPoison : CardEffect {
+    public class DrawOnTakeShield : CardEffect {
         private const int PRIORITY = 0;
         private readonly int? Duration;
         private readonly int Value;
 
-        public DrawOnApplyPoison(int damage, int? duration = null) {
+        public DrawOnTakeShield(int damage, int? duration = null) {
             this.Value = damage;
             this.Duration = duration;
         }
 
         public override void UpdateDescription(Player player = null) {
-            this.Description = $"{SpriteEffectMapping.Get(Effect.Poison)} "
-                               + $"{SpriteEffectMapping.Arrow} "
-                               + $"{this.Value}{SpriteEffectMapping.Get(Effect.Draw, Modifier.Plus)}";
-
-            if (this.Duration != null) this.Description += TurnsString(this.Duration.Value);
+            this.Description = new[] {
+                $"Draws {this.Value}{SpriteEffectMapping.Get(Effect.Draw)} when gaining {SpriteEffectMapping.Get(Effect.Shield)}"
+            };
+            if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));
+            // this.Description = new[] {
+            //     $"{SpriteEffectMapping.Get(Effect.Shield)} "
+            //     + $"{SpriteEffectMapping.Arrow} "
+            //     + $"{this.Value}{SpriteEffectMapping.Get(Effect.Draw, Modifier.Plus)}"
+            // };
+            // if (this.Duration != null) this.Description[0] += TurnsString(this.Duration.Value);
         }
 
         public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _, Character from, Character to) {
-            to.AddTempCallback(new DrawOnPoisonCallback(this.Value), this.Duration);
+            to.AddTempCallback(new Callback(this.Value), this.Duration);
             return new List<CardEffectValues>();
         }
 
         public override void Run(SimulationCharacter from, SimulationCharacter to) {
-            to.AddTempCallback(new DrawOnPoisonCallback(this.Value), this.Duration);
+            to.AddTempCallback(new Callback(this.Value), this.Duration);
         }
 
-        private class DrawOnPoisonCallback : OnApply {
+        private class Callback : OnTake {
             private readonly int Count;
 
-            public DrawOnPoisonCallback(int count) : base(PRIORITY, CallbackType.Poison) => this.Count = count;
+            public Callback(int count) : base(PRIORITY, CallbackType.Shield) => this.Count = count;
 
-            public override int Run(List<CardEffectValues> sideEffects, Character from, Character to, int value) {
+            public override int Run(List<CardEffectValues> sideEffects, Character _, Character to, int value) {
                 for (int i = 0; i < this.Count; i++)
-                    from.DrawCard();
+                    to.DrawCard();
                 return value;
             }
 
-            public override int Run(SimulationCharacter from, SimulationCharacter to, int value) {
+            public override int Run(SimulationCharacter _, SimulationCharacter to, int value) {
                 for (int i = 0; i < this.Count; i++)
-                    from.DrawCard();
+                    to.DrawCard();
                 return value;
             }
         }

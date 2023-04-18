@@ -5,34 +5,25 @@ using Code.Cards.Effects.Active;
 using Code.Cards.Enums;
 
 namespace Code.Cards.Collection.Actives.Paladin {
-    public class Smite : Card {
+    public class ShieldBash : Card {
         public override void Initialize() {
-            this.Name = $"Smite {this.Tier}";
+            this.Name = $"Shield Bash {this.Tier}";
             this.AllowedTarget = new List<Target> { Target.AliveEnemy };
             this.RemoveAfterUsage = false;
             switch (this.Tier) {
                 case Tier.I:
-                    this.CardEffects = new List<CardEffect> {
-                        new Damage(3),
-                        new Shield(2, self: true)
-                    };
-                    this.Cost = 4;
-                    break;
-                case Tier.II:
-                    this.CardEffects = new List<CardEffect> {
-                        new Damage(4),
-                        new Shield(3, self: true)
-                    };
-                    this.Cost = 4;
-                    break;
-                case Tier.III:
-                    this.CardEffects = new List<CardEffect> {
-                        new Damage(4),
-                        new Shield(4, self: true)
-                    };
+                    this.CardEffects = new List<CardEffect> { new ShieldDamage(1) };
                     this.Cost = 3;
                     break;
-                default: throw new Exception($"[Smite:Initialize] Tier {this.Tier} not allowed");
+                case Tier.II:
+                    this.CardEffects = new List<CardEffect> { new ShieldDamage(1.3f) };
+                    this.Cost = 3;
+                    break;
+                case Tier.III:
+                    this.CardEffects = new List<CardEffect> { new ShieldDamage(2) };
+                    this.Cost = 3;
+                    break;
+                default: throw new Exception($"[ShieldBash:Initialize] Tier {this.Tier} not allowed");
             }
         }
     }

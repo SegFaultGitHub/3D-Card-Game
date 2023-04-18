@@ -4,40 +4,46 @@ using Code.Callbacks.Enums;
 using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
+using Unity.VisualScripting;
 
 namespace Code.Cards.Effects.Passive {
-    public class DamageOnPoison : CardEffect {
+    public class DamageOnApplyPoison : CardEffect {
         private const int PRIORITY = 3;
         private readonly int? Duration;
         private readonly int Value;
 
-        public DamageOnPoison(int damage, int? duration = null) {
+        public DamageOnApplyPoison(int damage, int? duration = null) {
             this.Value = damage;
             this.Duration = duration;
         }
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Damage, player, null, this.Value, PRIORITY);
-            this.Description = $"{SpriteEffectMapping.Get(Effect.Poison)} "
-                               + $"{SpriteEffectMapping.Arrow} "
-                               + $"{value}{SpriteEffectMapping.Get(Effect.Damage)}";
-
-            if (this.Duration != null) this.Description += TurnsString(this.Duration.Value);
+            this.Description = new[] {
+                $"Deals {value}{SpriteEffectMapping.Get(Effect.Damage)} when applying {SpriteEffectMapping.Get(Effect.Poison)}"
+            };
+            if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));
+            // int value = player == null ? this.Value : player.Compute(null, CallbackType.Damage, player, null, this.Value, PRIORITY);
+            // this.Description = $"{SpriteEffectMapping.Get(Effect.Poison)} "
+            //                    + $"{SpriteEffectMapping.Arrow} "
+            //                    + $"{value}{SpriteEffectMapping.Get(Effect.Damage)}";
+            //
+            // if (this.Duration != null) this.Description += TurnsString(this.Duration.Value);
         }
 
         public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _, Character from, Character to) {
-            to.AddCallback(new DamageOnPoisonCallback(this.Value), this.Duration);
+            to.AddTempCallback(new Callback(this.Value), this.Duration);
             return new List<CardEffectValues>();
         }
 
         public override void Run(SimulationCharacter from, SimulationCharacter to) {
-            to.AddCallback(new DamageOnPoisonCallback(this.Value), this.Duration);
+            to.AddTempCallback(new Callback(this.Value), this.Duration);
         }
 
-        private class DamageOnPoisonCallback : OnApply {
+        private class Callback : OnApply {
             private readonly int Damage;
 
-            public DamageOnPoisonCallback(int damage) : base(PRIORITY, CallbackType.Poison) => this.Damage = damage;
+            public Callback(int damage) : base(PRIORITY, CallbackType.Poison) => this.Damage = damage;
 
             public override int Run(List<CardEffectValues> sideEffects, Character from, Character to, int value) {
                 CardEffectValues values = RunEffect(sideEffects, CallbackType.Damage, from, to, this.Damage, this.Priority);

@@ -5,15 +5,21 @@ using Code.Characters;
 
 namespace Code.Artifacts.Collection {
     public class MagicMushroom : Artifact {
+        private const float HP_RATIO = 0.1f;
+        private const int AP_VALUE = 1;
+
         public override void Initialize() {
             this.Name = "Magic Mushroom";
-            this.Description = new List<string> { $"{{+}}10{{%}}{SpriteEffectMapping.Heart}", $"{{+}}1{SpriteEffectMapping.Get(Effect.ActionPoint)}" };
+            this.Description = new List<string> {
+                $"Adds {(int)(HP_RATIO * 100)}{{%}}{SpriteEffectMapping.Heart}",
+                $"Adds {AP_VALUE}{SpriteEffectMapping.Get(Effect.ActionPoint)}"
+            };
         }
 
         public override void Equip(Character character) {
             base.Equip(character);
-            character.Stats.IncreaseMaxHealth(0.10f);
-            character.Stats.ActionPoints += 1;
+            character.Stats.IncreaseMaxHealth(HP_RATIO);
+            character.Stats.ActionPoints += AP_VALUE;
         }
     }
 }

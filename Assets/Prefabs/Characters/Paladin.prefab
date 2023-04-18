@@ -325,12 +325,11 @@ MonoBehaviour:
   <Name>k__BackingField: 
   <Cards>k__BackingField:
     BaseDeck:
-    - {fileID: -6025707984105876130, guid: 279027343c77ca14fad118ae18e9296a, type: 3}
-    - {fileID: -6025707984105876130, guid: 279027343c77ca14fad118ae18e9296a, type: 3}
+    - {fileID: -1946923268463959891, guid: 83b1ae8fc007bf544b834330eb3124cf, type: 3}
+    - {fileID: -1946923268463959891, guid: 83b1ae8fc007bf544b834330eb3124cf, type: 3}
+    - {fileID: 778287556873708256, guid: 279027343c77ca14fad118ae18e9296a, type: 3}
+    - {fileID: 778287556873708256, guid: 279027343c77ca14fad118ae18e9296a, type: 3}
     - {fileID: 7159724924934893627, guid: e00b0246c26d77f4fb58d7ec1349da11, type: 3}
-    - {fileID: -803522249019390330, guid: d7fa35fa64a229744bab614f7c31f01e, type: 3}
-    - {fileID: -803522249019390330, guid: d7fa35fa64a229744bab614f7c31f01e, type: 3}
-    - {fileID: -803522249019390330, guid: d7fa35fa64a229744bab614f7c31f01e, type: 3}
     Deck: []
     InitialHandSize: 4
     CardsDrawnPerTurn: 1
@@ -354,25 +353,57 @@ MonoBehaviour:
   <Loot>k__BackingField:
     Count: 3
     CardLoot:
-    - Weight: 3
+    - Weight: 12
+      Obj: {fileID: 8788825192445667803, guid: 50db9d309e927c840a3c525c3d359282, type: 3}
+    - Weight: 12
+      Obj: {fileID: -4470947047941904274, guid: 7bdeeff44531482419891e7aa0f66727,
+        type: 3}
+    - Weight: 12
+      Obj: {fileID: 4184534457941073815, guid: 6903cbae64ef15246814cf4bad787663, type: 3}
+    - Weight: 12
+      Obj: {fileID: -2301256465741367597, guid: 04ed013fbf57abb418f00c82cf9232f0,
+        type: 3}
+    - Weight: 12
+      Obj: {fileID: -1946923268463959891, guid: 83b1ae8fc007bf544b834330eb3124cf,
+        type: 3}
+    - Weight: 12
+      Obj: {fileID: 4213257125955783062, guid: 21b89ac4054c5dd4fad87b143429a10a, type: 3}
+    - Weight: 12
+      Obj: {fileID: -2143328858375111129, guid: b5f02bac04de6ee4a9f64f54ae91db93,
+        type: 3}
+    - Weight: 5
       Obj: {fileID: 7159724924934893627, guid: e00b0246c26d77f4fb58d7ec1349da11, type: 3}
-    - Weight: 2
+    - Weight: 5
       Obj: {fileID: -5564296667455540540, guid: 5e9761a2f5ddccf47943737f36d27c9e,
         type: 3}
+    - Weight: 7
+      Obj: {fileID: 320835862525453896, guid: e4134fed7d9bf2741a057451e4368189, type: 3}
+    - Weight: 7
+      Obj: {fileID: 6804926163989865130, guid: 71a73bd954817d342ae9d5f7ba3f5acf, type: 3}
+    - Weight: 7
+      Obj: {fileID: -1615657918253130885, guid: ea0db980aab16684f88cbcaa1965e1e8,
+        type: 3}
+    - Weight: 7
+      Obj: {fileID: 8842538076078033577, guid: 90474a9d157b9dc46a0bac985f1afe24, type: 3}
+    - Weight: 7
+      Obj: {fileID: -9108976973610048184, guid: 8633ef8ca5c316649b7156ea54cef1db,
+        type: 3}
+    - Weight: 7
+      Obj: {fileID: 5462578247408037286, guid: e5d35087cd9743f4e9d9fd3379a29bf1, type: 3}
     ArtifactLoot:
-    - Weight: 1
+    - Weight: 10
+      Obj: {fileID: 7517962577196091880, guid: fc23b11208840424a94d1a57cd1d469f, type: 3}
+    - Weight: 10
+      Obj: {fileID: 6816453439987953126, guid: b25ee0b5ff4c54844ad92a832b58db95, type: 3}
+    - Weight: 10
+      Obj: {fileID: 1334837384909944895, guid: a623432b3a0c85d419118beb16cfdeff, type: 3}
+    - Weight: 7
+      Obj: {fileID: 8947644979816247199, guid: aa30154c5e17c914c88e0a87646d0734, type: 3}
+    - Weight: 7
+      Obj: {fileID: 6625148811297677870, guid: b7244b807b89157418d3035790f20918, type: 3}
+    - Weight: 7
       Obj: {fileID: -2571808997849319521, guid: 28a329b79f7aa3c4b8588eb62a286afa,
         type: 3}
-    - Weight: 1
-      Obj: {fileID: 8947644979816247199, guid: aa30154c5e17c914c88e0a87646d0734, type: 3}
-    - Weight: 1
-      Obj: {fileID: 6625148811297677870, guid: b7244b807b89157418d3035790f20918, type: 3}
-    - Weight: 1
-      Obj: {fileID: 7517962577196091880, guid: fc23b11208840424a94d1a57cd1d469f, type: 3}
-    - Weight: 1
-      Obj: {fileID: 6816453439987953126, guid: b25ee0b5ff4c54844ad92a832b58db95, type: 3}
-    - Weight: 1
-      Obj: {fileID: 1334837384909944895, guid: a623432b3a0c85d419118beb16cfdeff, type: 3}
     LootDistribution:
     - Weight: 4
       Obj: 0

@@ -6,24 +6,25 @@ using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
 
-namespace Code.Artifacts.Collection {
+namespace Code.Artifacts.Collection.Necromancer {
     public class CursedRoot : Artifact {
         public override void Initialize() {
             this.Name = "Cursed Root";
             this.Description = new List<string> {
-                $"{SpriteEffectMapping.Get(Effect.Poison)} {SpriteEffectMapping.Arrow} 100{{%}}{SpriteEffectMapping.Get(Effect.Damage)}"
+                $"Deals {(int) (Callback.RATIO * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Damage)} when applying {SpriteEffectMapping.Get(Effect.Poison)}"
             };
         }
 
         public override void Equip(Character character) {
             base.Equip(character);
-            character.AddCallback(new CursedRootCallback());
+            character.AddCallback(new Callback());
         }
         
-        private class CursedRootCallback : OnApplied {
+        private class Callback : OnApplied {
             private const int PRIORITY = 0;
+            public const float RATIO = 1;
 
-            public CursedRootCallback() : base(PRIORITY, CallbackType.Poison) { }
+            public Callback() : base(PRIORITY, CallbackType.Poison) { }
 
             public override int Run(List<CardEffect.CardEffectValues> list, Character from, Character to, int value) {
                 CardEffect.CardEffectValues values = CardEffect.RunEffect(list, CallbackType.Damage, from, to, value, this.Priority);

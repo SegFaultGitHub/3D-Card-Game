@@ -5,41 +5,34 @@ using Code.Cards.Effects.Active;
 using Code.Cards.Enums;
 
 namespace Code.Cards.Collection.Actives.Paladin {
-    public class HolyAegis : Card {
+    public class Smite : Card {
         public override void Initialize() {
-            this.Name = $"Holy Aegis {this.Tier}";
-            this.AllowedTarget = new List<Target> {
-                Target.Self,
-                Target.AliveAlly
-            };
+            this.Name = $"Smite {this.Tier}";
+            this.AllowedTarget = new List<Target> { Target.AliveEnemy };
             this.RemoveAfterUsage = false;
             switch (this.Tier) {
                 case Tier.I:
                     this.CardEffects = new List<CardEffect> {
-                        new Shield(1),
-                        new Shield(1),
-                        new Shield(1)
+                        new Damage(3),
+                        new Shield(2, self: true)
                     };
                     this.Cost = 4;
                     break;
                 case Tier.II:
                     this.CardEffects = new List<CardEffect> {
-                        new Shield(1),
-                        new Shield(1),
-                        new Shield(1)
+                        new Damage(4),
+                        new Shield(3, self: true)
                     };
-                    this.Cost = 3;
+                    this.Cost = 4;
                     break;
                 case Tier.III:
                     this.CardEffects = new List<CardEffect> {
-                        new Shield(1),
-                        new Shield(1),
-                        new Shield(1),
-                        new Shield(1)
+                        new Damage(4),
+                        new Shield(4, self: true)
                     };
                     this.Cost = 3;
                     break;
-                default: throw new Exception($"[HolyAegis:Initialize] Tier {this.Tier} not allowed");
+                default: throw new Exception($"[Smite:Initialize] Tier {this.Tier} not allowed");
             }
         }
     }

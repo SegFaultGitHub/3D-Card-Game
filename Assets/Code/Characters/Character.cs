@@ -12,7 +12,6 @@ using Code.Cards.VFX;
 using Code.Extensions;
 using Code.Fight;
 using Code.UI;
-using Code.Utils;
 using UnityEngine;
 
 namespace Code.Characters {
@@ -70,7 +69,7 @@ namespace Code.Characters {
             }
             if (text != null) {
                 this.CurrentEffectText = Instantiate(this.Cards.TextPrefab, this.transform);
-                this.CurrentEffectText.Initialize(text);
+                this.CurrentEffectText.Initialize(text, allowMultiLine: false, maxWidth: 1);
                 this.CurrentEffectText.transform.localPosition = new Vector3(0, 3, 0);
                 this.CurrentEffectText.transform.LookAt(this.Camera);
             }
@@ -488,7 +487,7 @@ namespace Code.Characters {
             }
         }
 
-        public void AddCallback(Callback callback, int? duration) {
+        public void AddTempCallback(Callback callback, int? duration) {
             int key = -1;
             if (duration != null)
                 key = this.FightManager.Turn + (int)duration;

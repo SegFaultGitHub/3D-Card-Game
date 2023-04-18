@@ -6,10 +6,7 @@ using Code.Cards.Collection;
 using Code.Cards.UI;
 using Code.Fight;
 using Code.Utils;
-using MyBox;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = System.Object;
 
 namespace Code.Characters {
     public class Player : Character {
@@ -27,7 +24,8 @@ namespace Code.Characters {
             [field: SerializeField] public List<WeightDistribution<LootType>> LootDistribution;
 
             public List<Loot> GenerateLoot() {
-                return Utils.Utils.Sample(this.LootDistribution) switch {
+                LootType type = this.ArtifactLoot.Count == 0 ? LootType.Card : Utils.Utils.Sample(this.LootDistribution);
+                return type switch {
                     LootType.Card => Utils.Utils.Sample(this.CardLoot, this.Count)
                         .Select(card => new CardLoot { Card = card })
                         .Cast<Loot>()
@@ -38,6 +36,10 @@ namespace Code.Characters {
                         .ToList(),
                     _ => throw new Exception("[Player:_Loot:GenerateLoot] Unexpected LootType")
                 };
+            }
+
+            public void RemoveArtifact(Artifact artifact) {
+                this.ArtifactLoot.Remove(this.ArtifactLoot.Find(w => w.Obj == artifact));
             }
         }
         [field: SerializeField] public _Loot Loot { get; private set; }

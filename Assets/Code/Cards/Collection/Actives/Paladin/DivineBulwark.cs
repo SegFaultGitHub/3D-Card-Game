@@ -5,25 +5,28 @@ using Code.Cards.Effects.Active;
 using Code.Cards.Enums;
 
 namespace Code.Cards.Collection.Actives.Paladin {
-    public class Sanctum : Card {
+    public class DivineBulwark : Card {
         public override void Initialize() {
-            this.Name = $"Sanctum {this.Tier}";
-            this.AllowedTarget = new List<Target> { Target.AliveEnemy };
+            this.Name = $"Divine Bulwark {this.Tier}";
+            this.AllowedTarget = new List<Target> {
+                Target.Self,
+                Target.AliveAlly
+            };
             this.RemoveAfterUsage = false;
             switch (this.Tier) {
                 case Tier.I:
-                    this.CardEffects = new List<CardEffect> { new DamageGivingShield(3, 1) };
-                    this.Cost = 4;
+                    this.CardEffects = new List<CardEffect> { new IncreaseShield(.5f) };
+                    this.Cost = 2;
                     break;
                 case Tier.II:
-                    this.CardEffects = new List<CardEffect> { new DamageGivingShield(3, 1) };
-                    this.Cost = 3;
+                    this.CardEffects = new List<CardEffect> { new IncreaseShield(.7f) };
+                    this.Cost = 2;
                     break;
                 case Tier.III:
-                    this.CardEffects = new List<CardEffect> { new DamageGivingShield(3, 2) };
-                    this.Cost = 3;
+                    this.CardEffects = new List<CardEffect> { new IncreaseShield(1) };
+                    this.Cost = 2;
                     break;
-                default: throw new Exception($"[Sanctum:Initialize] Tier {this.Tier} not allowed");
+                default: throw new Exception($"[DivineBulwark:Initialize] Tier {this.Tier} not allowed");
             }
         }
     }

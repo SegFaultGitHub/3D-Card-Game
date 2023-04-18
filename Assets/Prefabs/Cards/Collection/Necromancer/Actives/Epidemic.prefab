@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &179588707541537217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8662809619899116293}
+  - component: {fileID: 1611967348755662256}
+  m_Layer: 0
+  m_Name: Epidemic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8662809619899116293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179588707541537217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1611967348755662256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179588707541537217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da03537c570442ab9599670134444d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 1323170175580846, guid: 1cfaf2f5351ec9f4fbe020e893742516,
+    type: 3}
+  <Steps>k__BackingField:
+  - Steps:
+    - StepType: 0
+      VFX: {fileID: 0}
+      Animation: 
+      Delay: 0
+    Wait: 1
+  - Steps:
+    - StepType: 4
+      VFX: {fileID: 9052094474014157690, guid: c28738dd0a6e25744bbd44070f95e164, type: 3}
+      Animation: Cast1
+      Delay: 0
+    - StepType: 7
+      VFX: {fileID: -5776068002372681308, guid: 013bd7ee767554042bb94366bae5ce20,
+        type: 3}
+      Animation: 
+      Delay: 0.2
+    - StepType: 9
+      VFX: {fileID: -5776068002372681308, guid: 013bd7ee767554042bb94366bae5ce20,
+        type: 3}
+      Animation: 
+      Delay: 1.5
+    Wait: 1
+  - Steps:
+    - StepType: 1
+      VFX: {fileID: 9052094474014157690, guid: c28738dd0a6e25744bbd44070f95e164, type: 3}
+      Animation: Hit
+      Delay: 0
+    Wait: 0

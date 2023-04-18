@@ -6,25 +6,25 @@ using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
 
-namespace Code.Artifacts.Collection {
+namespace Code.Artifacts.Collection.Paladin {
     public class IronArmor : Artifact {
         public override void Initialize() {
             this.Name = "Iron Armor";
             this.Description = new List<string> {
-                $"{IronArmorCallback.VALUE}{SpriteEffectMapping.Get(Effect.Shield)}{SpriteEffectMapping.Turn}"
+                $"Gains {Callback.VALUE}{SpriteEffectMapping.Get(Effect.Shield)} each turn"
             };
         }
 
         public override void Equip(Character character) {
             base.Equip(character);
-            character.AddCallback(new IronArmorCallback());
+            character.AddCallback(new Callback());
         }
 
-        private class IronArmorCallback : OnTurnEnds {
+        private class Callback : OnTurnEnds {
             private const int PRIORITY = 0;
             public const int VALUE = 2;
 
-            public IronArmorCallback() : base(PRIORITY) { }
+            public Callback() : base(PRIORITY) { }
 
             public override IEnumerable<CardEffect.CardEffectValues> Run(Character character) {
                 return new List<CardEffect.CardEffectValues> {

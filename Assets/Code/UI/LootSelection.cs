@@ -27,6 +27,7 @@ namespace Code.UI {
                         return;
                     case ArtifactUI artifactUI:
                         artifactUI.Artifact.Equip(this.Player);
+                        this.Player.Loot.RemoveArtifact(artifactUI.Artifact);
                         this.Chest.Completed = true;
                         this.SelectableUI = null;
                         return;
