@@ -9,7 +9,7 @@ using Code.Characters;
 namespace Code.Artifacts.Collection {
     public class IronArmor : Artifact {
         public override void Initialize() {
-            this.Name = "Iron Shield";
+            this.Name = "Iron Armor";
             this.Description = new List<string> {
                 $"{IronArmorCallback.VALUE}{SpriteEffectMapping.Get(Effect.Shield)}{SpriteEffectMapping.Turn}"
             };
@@ -22,7 +22,7 @@ namespace Code.Artifacts.Collection {
 
         private class IronArmorCallback : OnTurnEnds {
             private const int PRIORITY = 0;
-            public const int VALUE = 1;
+            public const int VALUE = 2;
 
             public IronArmorCallback() : base(PRIORITY) { }
 

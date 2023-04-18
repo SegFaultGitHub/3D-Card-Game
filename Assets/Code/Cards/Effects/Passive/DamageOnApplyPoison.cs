@@ -18,18 +18,14 @@ namespace Code.Cards.Effects.Passive {
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Damage, player, null, this.Value, PRIORITY);
-            this.Description = $"{SpriteEffectMapping.Get(Effect.Poison)} {SpriteEffectMapping.Arrow} ";
-
-            if (value > this.Value) this.Description += GreenText(value);
-            else if (value < this.Value) this.Description += RedText(value);
-            else this.Description += BlueText(value);
-
-            this.Description += SpriteEffectMapping.Get(Effect.Damage);
+            this.Description = $"{SpriteEffectMapping.Get(Effect.Poison)} "
+                               + $"{SpriteEffectMapping.Arrow} "
+                               + $"{value}{SpriteEffectMapping.Get(Effect.Damage)}";
 
             if (this.Duration != null) this.Description += TurnsString(this.Duration.Value);
         }
 
-        public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _1, Character from, Character to) {
+        public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _, Character from, Character to) {
             to.AddCallback(new DamageOnPoisonCallback(this.Value), this.Duration);
             return new List<CardEffectValues>();
         }

@@ -21,7 +21,7 @@ namespace Code.Artifacts.Collection {
 
         private class DoubleAxeCallback : OnCompute {
             private const int PRIORITY = 0;
-            public const int VALUE = 2;
+            public const int VALUE = 3;
 
             public DoubleAxeCallback() : base(PRIORITY, CallbackType.Damage) {}
 

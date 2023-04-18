@@ -6,30 +6,26 @@ using Code.Cards.UI;
 using Code.Characters;
 
 namespace Code.Cards.Effects.Passive {
-    public class PoisonOnActionPoint : CardEffect {
+    public class ShieldOnTakeActionPoint : CardEffect {
         private const int PRIORITY = 4;
         private readonly int? Duration;
         private readonly int Value;
 
-        public PoisonOnActionPoint(int poison, int? duration = null) {
+        public ShieldOnTakeActionPoint(int poison, int? duration = null) {
             this.Value = poison;
             this.Duration = duration;
         }
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Poison, player, null, this.Value, PRIORITY);
-            this.Description = $"{SpriteEffectMapping.Get(Effect.ActionPoint)} {SpriteEffectMapping.Arrow} ";
-
-            if (value > this.Value) this.Description += $"{GreenText(value)}";
-            else if (value < this.Value) this.Description += $"{RedText(value)}";
-            else this.Description += $"{BlueText(value)}";
-
-            this.Description += $"{SpriteEffectMapping.Get(Effect.Poison)}";
+            this.Description = $"{SpriteEffectMapping.Get(Effect.ActionPoint)} "
+                               + $"{SpriteEffectMapping.Arrow} "
+                               + $"{value}{SpriteEffectMapping.Get(Effect.ActionPoint)}";
 
             if (this.Duration != null) this.Description += TurnsString(this.Duration.Value);
         }
 
-        public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _1, Character from, Character to) {
+        public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _, Character from, Character to) {
             to.AddCallback(new PoisonOnActionPointCallback(this.Value, from), this.Duration);
             return new List<CardEffectValues>();
         }
