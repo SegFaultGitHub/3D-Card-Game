@@ -4,6 +4,7 @@ using Code.Callbacks.Enums;
 using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
+using Unity.VisualScripting;
 
 namespace Code.Cards.Effects.Passive {
     public class HealOverTime : CardEffect {
@@ -18,23 +19,25 @@ namespace Code.Cards.Effects.Passive {
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Heal, player, null, this.Value, PRIORITY);
-            this.Description = $"{BlueText(value)}{SpriteEffectMapping.Get(Effect.Heal)}{SpriteEffectMapping.Turn}";
-            if (this.Duration != null) this.Description += TurnsString(this.Duration.Value);
+            this.Description = new List<string> {
+                $"Heals {value}{SpriteEffectMapping.Heart} each turn"
+            };
+            if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));
         }
 
-        public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _1, Character from, Character to) {
-            to.AddCallback(new HealOverTimeCallback(this.Value), this.Duration);
+        public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _, Character from, Character to) {
+            to.AddTempCallback(new Callback(this.Value), this.Duration);
             return new List<CardEffectValues>();
         }
 
         public override void Run(SimulationCharacter from, SimulationCharacter to) {
-            to.AddCallback(new HealOverTimeCallback(this.Value), this.Duration);
+            to.AddTempCallback(new Callback(this.Value), this.Duration);
         }
 
-        private class HealOverTimeCallback : OnTurnStarts {
+        private class Callback : OnTurnStarts {
             private readonly int Value;
 
-            public HealOverTimeCallback(int value) : base(PRIORITY) => this.Value = value;
+            public Callback(int value) : base(PRIORITY) => this.Value = value;
 
             public override IEnumerable<CardEffectValues> Run(Character character) {
                 return new List<CardEffectValues> { RunEffect(null, CallbackType.Heal, character, character, this.Value, short.MaxValue) };

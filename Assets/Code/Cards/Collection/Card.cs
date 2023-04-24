@@ -48,10 +48,12 @@ namespace Code.Cards.Collection {
 
     public class Card : MonoBehaviour {
         protected List<CardEffect> CardEffects { get; set; }
-        [field: SerializeField] public List<Target> AllowedTarget { get; private set; }
-        [field: SerializeField] public bool RemoveAfterUsage { get; private set; }
-        [field: SerializeField] public int Cost { get; private set; }
+
         public string Name { get; protected set; }
+        public List<Target> AllowedTarget { get; protected set; }
+        public Tier Tier { protected get; set; }
+        public int Cost { get; protected set; }
+        public bool RemoveAfterUsage { get; protected set; }
 
         [field: SerializeField] public GameObject Icon { get; private set; }
         [field: SerializeField] public List<CardSteps> Steps { get; private set; }
@@ -104,7 +106,7 @@ namespace Code.Cards.Collection {
             throw new Exception("[Card:Initialize] Must be implemented in the child");
         }
 
-        public IEnumerable<string> Description(Player player) {
+        public IEnumerable<List<string>> Description(Player player) {
             foreach (CardEffect cardEffect in this.CardEffects) {
                 cardEffect.UpdateDescription(player);
                 yield return cardEffect.Description;

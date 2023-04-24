@@ -7,6 +7,7 @@ namespace Code.Cards.UI {
     public static class SpriteEffectMapping {
 
         public static string Arrow => Format("arrow");
+        public static string Tomb => Format("tomb");
         public static string Clock => Format("clock");
         public static string Heart => Format("heart");
         public static string Turn => Format("refresh");

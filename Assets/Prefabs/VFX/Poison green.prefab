@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5598130845808953656}
+  - {fileID: 2280498734580328645}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   Projectile: 0
   <Duration>k__BackingField: 1.5
   <MainProjectile>k__BackingField: {fileID: 0}
---- !u!1001 &5593494412027500160
+--- !u!1001 &2284853693384947581
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -145,16 +145,6 @@ PrefabInstance:
       propertyPath: lengthInSec
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 198199498142640322, guid: 61400dcd69108c64b970eb523f3d1783,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198199498142640322, guid: 61400dcd69108c64b970eb523f3d1783,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minMaxState
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 198225634346732756, guid: 61400dcd69108c64b970eb523f3d1783,
         type: 3}
       propertyPath: looping
@@ -164,21 +154,6 @@ PrefabInstance:
         type: 3}
       propertyPath: lengthInSec
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198225634346732756, guid: 61400dcd69108c64b970eb523f3d1783,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198225634346732756, guid: 61400dcd69108c64b970eb523f3d1783,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 198225634346732756, guid: 61400dcd69108c64b970eb523f3d1783,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minMaxState
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 199218903534375010, guid: 61400dcd69108c64b970eb523f3d1783,
         type: 3}
@@ -192,9 +167,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61400dcd69108c64b970eb523f3d1783, type: 3}
---- !u!4 &5598130845808953656 stripped
+--- !u!4 &2280498734580328645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4674918030614456, guid: 61400dcd69108c64b970eb523f3d1783,
     type: 3}
-  m_PrefabInstance: {fileID: 5593494412027500160}
+  m_PrefabInstance: {fileID: 2284853693384947581}
   m_PrefabAsset: {fileID: 0}

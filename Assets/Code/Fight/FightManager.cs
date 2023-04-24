@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Characters;
 using Code.Extensions;
@@ -20,6 +21,7 @@ namespace Code.Fight {
         [field: SerializeField] public Room Room { get; private set; }
         [field: SerializeField] public List<Enemy> Enemies { get; private set; }
         public Player Player { get; set; }
+        [field: SerializeField] private Tier Tier;
 
         [field: SerializeField] private CardSelection CardSelection;
         [field: SerializeField] private LootSelection LootSelection;
@@ -44,11 +46,11 @@ namespace Code.Fight {
             if (this.InProgress)
                 return;
 
-            this.CardSelection.gameObject.SetActive(true);
             ((PlayerController)this.Player.CharacterController).StartFight();
             this.FadeScreen.Fade(
                 1f,
                 () => {
+                    this.InSeconds(0, () => this.CardSelection.gameObject.SetActive(true));
                     this.Camera.transform.position = this.Room.CameraPosition.position;
                     this.Camera.LookAt(this.Room.CameraFocus);
                     this.Room.PlacePlayer(this.Player);
@@ -121,7 +123,7 @@ namespace Code.Fight {
                             Transform chestTransform = chest.transform;
                             chestTransform.position = this.Room.Center.position;
                             chestTransform.eulerAngles = new Vector3(0, this.Room.Rotation + 180, 0);
-                            chest.Open(loot);
+                            chest.Open(loot, this.Tier);
                             this.LootSelection.Chest = chest;
                             this.LootSelection.gameObject.SetActive(true);
 

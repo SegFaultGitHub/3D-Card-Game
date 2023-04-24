@@ -3,6 +3,7 @@ using System.Linq;
 using Code.Cards.Collection;
 using Code.Characters;
 using Code.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Code.Cards.UI {
@@ -49,10 +50,11 @@ namespace Code.Cards.UI {
             GameObject icon = Instantiate(this.Card.Icon, this.IconFrame);
             icon.layer = this.gameObject.layer;
             icon.transform.localPosition = new Vector3(0, 0, 0.025f);
+            icon.transform.localScale *= 0.8f;
 
-            this.CreateTextLine(this.Card.Name, this.Name);
-            Line cost = this.CreateTextLine($"{this.Card.Cost}{{actionPoint}}", this.CostFrame);
-            cost.Transform.localScale *= 0.9f;
+            this.CreateText(this.Card.Name, this.Name, allowMultiline: false, maxTextWidth: this.MaxTextWidth);
+            Text cost = this.CreateText($"{this.Card.Cost}{{actionPoint}}", this.CostFrame, allowMultiline: false, maxTextWidth: null);
+            cost.transform.localScale *= 0.7f;
 
             this.UpdateDescription(player);
         }
@@ -60,21 +62,23 @@ namespace Code.Cards.UI {
         public void UpdateDescription(Player player) {
             foreach (Transform child in this.Effects) Destroy(child.gameObject);
 
-            List<string> effects = this.Card.Description(player).ToList();
-            List<Line> lines = effects.Select(effect => this.CreateTextLine(effect, this.Effects)).ToList();
-            float totalHeight = lines.Sum(line => line.Height);
+            List<string> effects = this.Card.Description(player).SelectMany(s => s).ToList();
+            List<Text> texts = effects.Select(
+                    effect => this.CreateText(effect, this.Effects, allowMultiline: true, maxTextWidth: this.MaxTextWidth)
+                )
+                .ToList();
 
-            for (int i = 1; i < lines.Count; i++) {
-                lines[i].Transform.localPosition = new Vector3(
+            if (texts.Count <= 1)
+                return;
+
+            float totalHeight = texts.Sum(text => text.Height);
+            texts[0].transform.localPosition = new Vector3(0, totalHeight / 2 - texts[0].Height / 2, 0);
+            for (int i = 1; i < texts.Count; i++) {
+                texts[i].transform.localPosition = new Vector3(
                     0,
-                    lines[i - 1].Transform.localPosition.y - lines[i - 1].Height / 2 - lines[i].Height / 2,
-                    0.025f
+                    texts[i - 1].transform.localPosition.y - texts[i - 1].Height / 2 - texts[i].Height / 2,
+                    0
                 );
-            }
-            foreach (Line line in lines) {
-                Vector3 localPosition = line.Transform.localPosition;
-                localPosition = new Vector3(0, localPosition.y + totalHeight / 2 - lines[0].Height / 2, 0.025f);
-                line.Transform.localPosition = localPosition;
             }
         }
 
@@ -88,24 +92,10 @@ namespace Code.Cards.UI {
             this.TargetPosition = null;
         }
 
-        private Line CreateTextLine(string s, Transform parent) {
+        private Text CreateText(string s, Transform parent, bool allowMultiline, float? maxTextWidth) {
             Text text = Instantiate(this.TextPrefab, parent);
-            text.Initialize(s);
-            float scale = 1;
-            if (text.Width > this.MaxTextWidth) {
-                scale = this.MaxTextWidth / text.Width;
-                text.transform.localScale = new Vector3(scale, scale, scale);
-            }
-
-            return new Line {
-                Height = text.Height * scale,
-                Transform = text.transform
-            };
-        }
-
-        private struct Line {
-            public float Height;
-            public Transform Transform;
+            text.Initialize(s, allowMultiLine: allowMultiline, maxWidth: maxTextWidth);
+            return text;
         }
     }
 }

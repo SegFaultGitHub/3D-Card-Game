@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Code.Artifacts.UI;
+using Code.Cards.Enums;
 using Code.Cards.UI;
 using Code.Extensions;
 using Code.Fight;
@@ -17,7 +18,7 @@ namespace Code.Map.Misc {
         [field: SerializeField] public bool Completed { get; set; }
         [field: SerializeField] private float DeselectSize, SelectSize;
 
-        public void Open(List<Loot> loot) {
+        public void Open(List<Loot> loot, Tier tier) {
             this.SetCameraTarget();
 
             Vector3 angles = this.Top.eulerAngles;
@@ -36,6 +37,7 @@ namespace Code.Map.Misc {
                         switch (item) {
                             case CardLoot cardLoot:
                                 selectableUI = Instantiate(this.CardUIPrefab, this.transform);
+                                cardLoot.Card.Tier = tier;
                                 ((CardUI)selectableUI).Card = cardLoot.Card;
                                 ((CardUI)selectableUI).Initialize();
                                 break;

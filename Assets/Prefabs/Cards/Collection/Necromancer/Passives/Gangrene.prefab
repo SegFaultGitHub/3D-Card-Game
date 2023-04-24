@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5196874097895051983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3950148007379805392}
+  - component: {fileID: -3453390151847681568}
+  m_Layer: 0
+  m_Name: Gangrene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3950148007379805392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196874097895051983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-3453390151847681568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196874097895051983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf66989bbc74c5eaa67c21a687551ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 5850284512409140251, guid: d1e217112e718ae49b45338657ea87c0,
+    type: 3}
+  <Steps>k__BackingField:
+  - Steps:
+    - StepType: 9
+      VFX: {fileID: 0}
+      Animation: 
+      Delay: 0
+    - StepType: 5
+      VFX: {fileID: 8510153719178764923, guid: 8f4a839feaab0ce45aba604bef8c9e9f, type: 3}
+      Animation: 
+      Delay: 0
+    - StepType: 6
+      VFX: {fileID: 3815354856674372853, guid: e2efd8e2a92b5aa409dbb0b6219683df, type: 3}
+      Animation: Cast1
+      Delay: 0
+    Wait: 1

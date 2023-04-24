@@ -27,6 +27,7 @@ namespace Code.UI {
                         return;
                     case ArtifactUI artifactUI:
                         artifactUI.Artifact.Equip(this.Player);
+                        this.Player.Loot.RemoveArtifact(artifactUI.Artifact);
                         this.Chest.Completed = true;
                         this.SelectableUI = null;
                         return;
@@ -53,6 +54,7 @@ namespace Code.UI {
         protected override void OnEnable() {
             base.OnEnable();
             this.InputActions.LootSelection.Enable();
+            this.Input = new _Input { Choose = false };
         }
 
         protected override void OnDisable() {
@@ -61,9 +63,7 @@ namespace Code.UI {
         }
 
         private void GatherInput() {
-            this.Input = new _Input {
-                Choose = this.InputActions.LootSelection.Choose.WasReleasedThisFrame()
-            };
+            this.Input = new _Input { Choose = this.InputActions.LootSelection.Choose.WasReleasedThisFrame() };
         }
         #endregion
     }

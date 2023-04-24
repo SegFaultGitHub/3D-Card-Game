@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8629954393592486452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9166300272725506216}
+  - component: {fileID: 2265342695855460631}
+  m_Layer: 0
+  m_Name: Contamination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9166300272725506216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8629954393592486452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2265342695855460631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8629954393592486452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4b218c15cf4eed8cae86e7716bd07e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 1148182544350746, guid: be6b3bc3458926542b7b09ec17612070,
+    type: 3}
+  <Steps>k__BackingField:
+  - Steps:
+    - StepType: 4
+      VFX: {fileID: 9052094474014157690, guid: c28738dd0a6e25744bbd44070f95e164, type: 3}
+      Animation: Cast1
+      Delay: 0
+    - StepType: 7
+      VFX: {fileID: 1602247897855751501, guid: 5066555d4af084b44ba92cd2caaa9383, type: 3}
+      Animation: 
+      Delay: 0.2
+    - StepType: 9
+      VFX: {fileID: -5776068002372681308, guid: 013bd7ee767554042bb94366bae5ce20,
+        type: 3}
+      Animation: 
+      Delay: 1.5
+    Wait: 1

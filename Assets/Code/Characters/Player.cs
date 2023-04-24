@@ -6,10 +6,7 @@ using Code.Cards.Collection;
 using Code.Cards.UI;
 using Code.Fight;
 using Code.Utils;
-using MyBox;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = System.Object;
 
 namespace Code.Characters {
     public class Player : Character {
@@ -27,7 +24,8 @@ namespace Code.Characters {
             [field: SerializeField] public List<WeightDistribution<LootType>> LootDistribution;
 
             public List<Loot> GenerateLoot() {
-                return Utils.Utils.Sample(this.LootDistribution) switch {
+                LootType type = this.ArtifactLoot.Count == 0 ? LootType.Card : Utils.Utils.Sample(this.LootDistribution);
+                return type switch {
                     LootType.Card => Utils.Utils.Sample(this.CardLoot, this.Count)
                         .Select(card => new CardLoot { Card = card })
                         .Cast<Loot>()
@@ -38,6 +36,10 @@ namespace Code.Characters {
                         .ToList(),
                     _ => throw new Exception("[Player:_Loot:GenerateLoot] Unexpected LootType")
                 };
+            }
+
+            public void RemoveArtifact(Artifact artifact) {
+                this.ArtifactLoot.Remove(this.ArtifactLoot.Find(w => w.Obj == artifact));
             }
         }
         [field: SerializeField] public _Loot Loot { get; private set; }
@@ -58,12 +60,21 @@ namespace Code.Characters {
             this.UI.HandUI.Reset();
         }
 
-        public override Card DrawCard() {
-            Card card = base.DrawCard();
-            if (card == null)
-                return null;
+        public override void DrawCard() {
+            if (this.Cards.Hand.Count >= this.Cards.MaxHandSize)
+                return;
+            if (this.Cards.Deck.Count == 0) {
+                if (this.Cards.Discarded.Count == 0)
+                    return;
+                this.Cards.Deck = new List<Card>(this.Cards.Discarded);
+                this.Cards.Discarded = new List<Card>();
+            }
+
+            Card card = Utils.Utils.Sample(this.Cards.Deck);
+            card.Initialize();
+            this.Cards.Deck.Remove(card);
+            this.Cards.Hand.Add(card);
             this.UI.HandUI.AddCard(card);
-            return card;
         }
 
         public void UpdateCardDescriptions() {

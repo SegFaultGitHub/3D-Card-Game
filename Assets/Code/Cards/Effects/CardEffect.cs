@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Globalization;
 using Code.Callbacks.Enums;
 using Code.Cards.UI;
 using Code.Characters;
@@ -7,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace Code.Cards.Effects {
     public abstract class CardEffect {
-        public string Description { get; protected set; }
+        public List<string> Description { get; protected set; }
 
         public abstract IEnumerable<CardEffectValues> Run(List<CardEffectValues> sideEffects, Character from, Character to);
         public abstract void Run(SimulationCharacter from, SimulationCharacter to);
@@ -64,42 +63,7 @@ namespace Code.Cards.Effects {
         }
 
         #region String methods
-        //protected static string GreenText(string input) => $"<color=#005500>{input}</color>";
-        protected static string GreenText(string input) {
-            return input;
-        }
-        protected static string GreenText(int input) {
-            return GreenText(input.ToString());
-        }
-        protected static string GreenText(float input) {
-            return GreenText(input.ToString(CultureInfo.InvariantCulture));
-        }
-
-        // protected static string RedText(string input) => $"<color=#550000>{input}</color>";
-        protected static string RedText(string input) {
-            return input;
-        }
-        protected static string RedText(int input) {
-            return RedText(input.ToString());
-        }
-        protected static string RedText(float input) {
-            return RedText(input.ToString(CultureInfo.InvariantCulture));
-        }
-
-        // protected static string BlueText(string input) => $"<color=#000099>{input}</color>";
-        protected static string BlueText(string input) {
-            return input;
-        }
-        protected static string BlueText(int input) {
-            return BlueText(input.ToString());
-        }
-        protected static string BlueText(float input) {
-            return BlueText(input.ToString(CultureInfo.InvariantCulture));
-        }
-
-        protected static string TurnsString(int duration) {
-            return $" {BlueText(duration)}{SpriteEffectMapping.Clock}";
-        }
+        protected static string TurnsString(int duration) => $"{duration}{SpriteEffectMapping.Clock}";
         #endregion
     }
 }

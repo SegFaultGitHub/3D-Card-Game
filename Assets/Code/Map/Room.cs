@@ -50,7 +50,7 @@ namespace Code.Map {
 
         public List<Enemy> SpawnEnemies(Component player, List<Enemy> enemies) {
             List<Enemy> instances = new();
-            float angle = (enemies.Count - 1f) * this.OffsetAngle / 2f;
+            float angle = -(enemies.Count - 1f) * this.OffsetAngle / 2f;
             Vector3 playerPosition = this.GetPlayerPosition();
             foreach (Enemy enemy in enemies) {
                 Vector3 position = playerPosition
@@ -59,7 +59,7 @@ namespace Code.Map {
                 Enemy instance = Instantiate(enemy);
                 instance.CharacterController.SetPosition(position);
                 instance.transform.LookAt(player.transform, Vector3.up);
-                angle -= this.OffsetAngle;
+                angle += this.OffsetAngle;
                 instances.Add(instance);
             }
             return instances;
