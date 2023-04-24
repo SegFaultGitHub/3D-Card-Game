@@ -16,7 +16,7 @@ namespace Code.Cards.Effects.Active {
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Damage, player, null, this.Value, short.MaxValue);
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Deals {value}{SpriteEffectMapping.Get(Effect.Damage)}",
                 $"Gains {(int)(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Shield)}"
             };

@@ -91,10 +91,14 @@ namespace Code.UI {
                 }
                 GameObject characterInstance;
                 Character character;
+                Dimensions dimensions;
                 switch (c) {
                     case >= 'a' and <= 'z' when !parsingSymbol:
                         character = LETTERS_WITH_SIZE[c - 'a'];
                         characterInstance = Instantiate(character.Obj, currentWord.Parent);
+                        dimensions = characterInstance.AddComponent<Dimensions>();
+                        dimensions.Width = character.Width;
+                        dimensions.Height = character.Height;
                         characterInstance.layer = this.gameObject.layer;
                         characterInstance.transform.localPosition = new Vector3(-currentWord.Offset - character.Width / 2, -character.Height / 2, 0);
                         currentWord.Offset += character.Width + 0.02f;
@@ -107,6 +111,9 @@ namespace Code.UI {
                     case >= '0' and <= '9':
                         character = NUMBERS_WITH_SIZE[c - '0'];
                         characterInstance = Instantiate(character.Obj, currentWord.Parent);
+                        dimensions = characterInstance.AddComponent<Dimensions>();
+                        dimensions.Width = character.Width;
+                        dimensions.Height = character.Height;
                         characterInstance.layer = this.gameObject.layer;
                         characterInstance.transform.localPosition = new Vector3(-currentWord.Offset - character.Width / 2, -character.Height / 2, 0);
                         currentWord.Offset += character.Width + 0.02f;
@@ -129,6 +136,9 @@ namespace Code.UI {
                         }
                         Symbol s = SYMBOLS_WITH_SIZE[parts[0]];
                         GameObject symbolInstance = Instantiate(s.Obj, currentWord.Parent);
+                        dimensions = symbolInstance.AddComponent<Dimensions>();
+                        dimensions.Width = s.Width;
+                        dimensions.Height = s.Height;
                         symbolInstance.layer = this.gameObject.layer;
                         symbolInstance.transform.localPosition = new Vector3(-currentWord.Offset - scale * s.Width / 2, -s.Height / 2, 0);
                         symbolInstance.transform.localScale = new Vector3(scale, scale, scale);
@@ -146,6 +156,9 @@ namespace Code.UI {
             }
             foreach (Word word in words) {
                 word.Parent.localPosition = new Vector3(word.Width / 2, 0, 0);
+                foreach (Dimensions dimensions in word.Parent.GetComponentsInChildren<Dimensions>()) {
+                    dimensions.transform.localPosition -= new Vector3(0, -dimensions.Height / 2 + word.Height / 2, 0);
+                }
             }
 
             if (!allowMultiLine) {
@@ -290,6 +303,11 @@ namespace Code.UI {
             public string Alias;
             [HideInInspector] public float Width;
             [HideInInspector] public float Height;
+        }
+
+        private class Dimensions : MonoBehaviour {
+            public float Width;
+            public float Height;
         }
     }
 }

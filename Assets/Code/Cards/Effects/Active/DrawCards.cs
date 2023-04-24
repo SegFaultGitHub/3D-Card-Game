@@ -10,7 +10,7 @@ namespace Code.Cards.Effects.Active {
         public DrawCards(int value) => this.Value = value;
 
         public override void UpdateDescription(Player _ = null) {
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Draws {this.Value}{SpriteEffectMapping.Get(Effect.Draw)}"
             };
             // this.Description = $"{this.Value}{SpriteEffectMapping.Get(Effect.Draw, Modifier.Plus)}";

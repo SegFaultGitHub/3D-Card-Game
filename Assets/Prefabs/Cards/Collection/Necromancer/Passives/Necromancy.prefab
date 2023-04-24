@@ -52,4 +52,12 @@ MonoBehaviour:
       VFX: {fileID: 0}
       Animation: 
       Delay: 0
-    Wait: 0
+    - StepType: 5
+      VFX: {fileID: 8100059797477238463, guid: 2f6f6cac38a290649bca13adc0a7ba61, type: 3}
+      Animation: 
+      Delay: 0
+    - StepType: 6
+      VFX: {fileID: 3815354856674372853, guid: e2efd8e2a92b5aa409dbb0b6219683df, type: 3}
+      Animation: Cast1
+      Delay: 0
+    Wait: 1

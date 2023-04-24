@@ -18,7 +18,7 @@ namespace Code.Cards.Effects.Passive {
         }
 
         public override void UpdateDescription(Player _ = null) {
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Increase {SpriteEffectMapping.Get(Effect.Damage)} by {(int)(this.Ratio * 100)}{{%}}"
             };
             if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));

@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 
 namespace Code.Cards.Effects.Passive {
     public class DrawOnApplyPoison : CardEffect {
-        private const int PRIORITY = 0;
+        private const int PRIORITY = -1;
         private readonly int? Duration;
         private readonly int Value;
 
@@ -18,7 +18,7 @@ namespace Code.Cards.Effects.Passive {
         }
 
         public override void UpdateDescription(Player player = null) {
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Draws {this.Value}{SpriteEffectMapping.Get(Effect.Draw)} when applying {SpriteEffectMapping.Get(Effect.Poison)}"
             };
 

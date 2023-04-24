@@ -92,10 +92,8 @@ namespace Code.Cards.UI {
 
         private void MoveToTarget() {
             Transform cameraTransform = this.Camera.transform;
-            this.CardUI.TargetPosition = this.Target.transform.position
-                                         + cameraTransform.right * 2
-                                         + cameraTransform.up * 2
-                                         - cameraTransform.forward * 2;
+            this.CardUI.TargetPosition = this.Target.transform.position + cameraTransform.right * 2 + cameraTransform.up * 2;
+                                         //- cameraTransform.forward * 2;
         }
 
         #region Input
@@ -109,6 +107,11 @@ namespace Code.Cards.UI {
         protected override void OnEnable() {
             base.OnEnable();
             this.InputActions.CardSelection.Enable();
+            this.Input = new _Input {
+                DragCardEnded = false,
+                DragCardInProgress = false,
+                DragCardPerformed = false
+            };
         }
 
         protected override void OnDisable() {

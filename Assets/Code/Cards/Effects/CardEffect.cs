@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 namespace Code.Cards.Effects {
     public abstract class CardEffect {
-        public string[] Description { get; protected set; }
+        public List<string> Description { get; protected set; }
 
         public abstract IEnumerable<CardEffectValues> Run(List<CardEffectValues> sideEffects, Character from, Character to);
         public abstract void Run(SimulationCharacter from, SimulationCharacter to);

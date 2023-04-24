@@ -19,7 +19,7 @@ namespace Code.Cards.Effects.Passive {
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Poison, player, null, this.Value, PRIORITY);
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Applies {value}{SpriteEffectMapping.Get(Effect.Poison)} when losing {SpriteEffectMapping.Get(Effect.ActionPoint)}"
             };
             if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));

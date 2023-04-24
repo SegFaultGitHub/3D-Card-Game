@@ -128,22 +128,7 @@ namespace Code.Characters {
             return !this.IsAlly(character);
         }
 
-        public virtual Card DrawCard() {
-            if (this.Cards.Hand.Count >= this.Cards.MaxHandSize)
-                return null;
-            if (this.Cards.Deck.Count == 0) {
-                if (this.Cards.Discarded.Count == 0)
-                    return null;
-                this.Cards.Deck = new List<Card>(this.Cards.Discarded);
-                this.Cards.Discarded = new List<Card>();
-            }
-
-            Card card = Utils.Utils.Sample(this.Cards.Deck);
-            card.Initialize();
-            this.Cards.Deck.Remove(card);
-            this.Cards.Hand.Add(card);
-            return card;
-        }
+        public abstract void DrawCard();
 
         public void AddToDeck(Card card) {
             this.Cards.BaseDeck.Add(card);
@@ -297,7 +282,10 @@ namespace Code.Characters {
                                         cardStep.Delay,
                                         () => {
                                             VFX vfx = this.CharacterController.LaunchVFX(cardStep.VFX);
-                                            this.While(() => vfx != null && !vfx.Completed, () => this.Lock--);
+                                            this.While(() => !vfx.Completed, () => {
+                                                    this.Lock--;
+                                                }
+                                            );
                                         }
                                     );
                                 } else {
@@ -317,7 +305,7 @@ namespace Code.Characters {
                                         cardStep.Delay,
                                         () => {
                                             VFX vfx = target.CharacterController.LaunchVFX(cardStep.VFX);
-                                            this.While(() => vfx != null && !vfx.Completed, () => this.Lock--);
+                                            this.While(() => !vfx.Completed, () => this.Lock--);
                                         }
                                     );
                                 } else {

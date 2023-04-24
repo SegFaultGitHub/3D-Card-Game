@@ -48,8 +48,36 @@ MonoBehaviour:
     type: 3}
   <Steps>k__BackingField:
   - Steps:
-    - StepType: 9
+    - StepType: 0
       VFX: {fileID: 0}
       Animation: 
       Delay: 0
-    Wait: 0
+    - StepType: 8
+      VFX: {fileID: 0}
+      Animation: 
+      Delay: 0.25
+    Wait: 1
+  - Steps:
+    - StepType: 9
+      VFX: {fileID: 0}
+      Animation: 
+      Delay: 1.3
+    - StepType: 7
+      VFX: {fileID: 7818484565488977036, guid: ae07ffa45a6bb3f459829b0f19179717, type: 3}
+      Animation: 
+      Delay: 0.78
+    - StepType: 4
+      VFX: {fileID: 7818484565488977036, guid: ae07ffa45a6bb3f459829b0f19179717, type: 3}
+      Animation: Cast1
+      Delay: 0
+    - StepType: 6
+      VFX: {fileID: 7818484565488977036, guid: ae07ffa45a6bb3f459829b0f19179717, type: 3}
+      Animation: Hit
+      Delay: 1.3
+    Wait: 1
+  - Steps:
+    - StepType: 1
+      VFX: {fileID: 0}
+      Animation: 
+      Delay: 0.52
+    Wait: 1

@@ -11,7 +11,7 @@ namespace Code.Cards.Effects.Active {
         public ShieldDamage(float ratio) => this.Ratio = ratio;
 
         public override void UpdateDescription(Player _ = null) {
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Deals {(int)(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Shield)} as {SpriteEffectMapping.Get(Effect.Damage)}"
             };
         }

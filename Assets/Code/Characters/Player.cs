@@ -60,12 +60,21 @@ namespace Code.Characters {
             this.UI.HandUI.Reset();
         }
 
-        public override Card DrawCard() {
-            Card card = base.DrawCard();
-            if (card == null)
-                return null;
+        public override void DrawCard() {
+            if (this.Cards.Hand.Count >= this.Cards.MaxHandSize)
+                return;
+            if (this.Cards.Deck.Count == 0) {
+                if (this.Cards.Discarded.Count == 0)
+                    return;
+                this.Cards.Deck = new List<Card>(this.Cards.Discarded);
+                this.Cards.Discarded = new List<Card>();
+            }
+
+            Card card = Utils.Utils.Sample(this.Cards.Deck);
+            card.Initialize();
+            this.Cards.Deck.Remove(card);
+            this.Cards.Hand.Add(card);
             this.UI.HandUI.AddCard(card);
-            return card;
         }
 
         public void UpdateCardDescriptions() {

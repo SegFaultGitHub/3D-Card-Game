@@ -19,7 +19,7 @@ namespace Code.Cards.Effects.Passive {
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Shield, player, null, this.Value, PRIORITY);
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Gains {value}{SpriteEffectMapping.Get(Effect.Shield)} when taking {SpriteEffectMapping.Get(Effect.Damage)}"
             };
             if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));
@@ -42,7 +42,7 @@ namespace Code.Cards.Effects.Passive {
             }
 
             public override int Run(List<CardEffectValues> list, Character _, Character to, int value) {
-                if (value >= 0)
+                if (value <= 0)
                     return value;
                 CardEffectValues values = RunEffect(list, CallbackType.Shield, to, to, this.Shield, this.Priority);
                 list?.Add(values);

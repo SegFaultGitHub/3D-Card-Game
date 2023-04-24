@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 
 namespace Code.Cards.Effects.Passive {
     public class DrawOnTakeShield : CardEffect {
-        private const int PRIORITY = 0;
+        private const int PRIORITY = -1;
         private readonly int? Duration;
         private readonly int Value;
 
@@ -18,11 +18,11 @@ namespace Code.Cards.Effects.Passive {
         }
 
         public override void UpdateDescription(Player player = null) {
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Draws {this.Value}{SpriteEffectMapping.Get(Effect.Draw)} when gaining {SpriteEffectMapping.Get(Effect.Shield)}"
             };
             if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));
-            // this.Description = new[] {
+            // this.Description = new List<string> {
             //     $"{SpriteEffectMapping.Get(Effect.Shield)} "
             //     + $"{SpriteEffectMapping.Arrow} "
             //     + $"{this.Value}{SpriteEffectMapping.Get(Effect.Draw, Modifier.Plus)}"

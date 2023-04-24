@@ -18,7 +18,7 @@ namespace Code.Cards.Effects.Passive {
         }
 
         public override void UpdateDescription(Player _ = null) {
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"{SpriteEffectMapping.Get(Effect.Damage)} "
                 + $"{SpriteEffectMapping.Arrow} "
                 + $"{(int)(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Heal)}"

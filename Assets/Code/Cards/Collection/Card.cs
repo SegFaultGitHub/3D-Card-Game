@@ -106,7 +106,7 @@ namespace Code.Cards.Collection {
             throw new Exception("[Card:Initialize] Must be implemented in the child");
         }
 
-        public IEnumerable<string[]> Description(Player player) {
+        public IEnumerable<List<string>> Description(Player player) {
             foreach (CardEffect cardEffect in this.CardEffects) {
                 cardEffect.UpdateDescription(player);
                 yield return cardEffect.Description;

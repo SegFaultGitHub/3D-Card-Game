@@ -21,7 +21,7 @@ namespace Code.Cards.Effects.Active {
                 >= 0 => $"Gives {value}",
                 < 0 => $"Removes {Mathf.Abs(value)}"
             };
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"{text}{SpriteEffectMapping.Get(Effect.ActionPoint)}"
             };
         }

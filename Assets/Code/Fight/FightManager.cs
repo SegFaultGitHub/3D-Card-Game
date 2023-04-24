@@ -46,11 +46,11 @@ namespace Code.Fight {
             if (this.InProgress)
                 return;
 
-            this.CardSelection.gameObject.SetActive(true);
             ((PlayerController)this.Player.CharacterController).StartFight();
             this.FadeScreen.Fade(
                 1f,
                 () => {
+                    this.InSeconds(0, () => this.CardSelection.gameObject.SetActive(true));
                     this.Camera.transform.position = this.Room.CameraPosition.position;
                     this.Camera.LookAt(this.Room.CameraFocus);
                     this.Room.PlacePlayer(this.Player);

@@ -27,6 +27,7 @@ namespace Code.Characters {
                 this.MovementDirection = this.TargetPosition.Value - this.transform.position;
                 if (this.MovementDirection.magnitude <= this.Speed) {
                     this.MovementDirection *= 0;
+                    this.SetPosition(this.TargetPosition.Value);
                     this.TargetPosition = null;
                 }
             }

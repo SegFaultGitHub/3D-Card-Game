@@ -11,7 +11,7 @@ namespace Code.Cards.Effects.Active {
         public PoisonExplosion(float ratio) => this.Ratio = ratio;
 
         public override void UpdateDescription(Player _ = null) {
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Explodes {(int)(this.Ratio * 100)}{{%}}{SpriteEffectMapping.Get(Effect.Poison)}"
             };
         }

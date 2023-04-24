@@ -48,12 +48,6 @@ MonoBehaviour:
     type: 3}
   <Steps>k__BackingField:
   - Steps:
-    - StepType: 0
-      VFX: {fileID: 0}
-      Animation: 
-      Delay: 0
-    Wait: 1
-  - Steps:
     - StepType: 4
       VFX: {fileID: 9052094474014157690, guid: c28738dd0a6e25744bbd44070f95e164, type: 3}
       Animation: Cast1
@@ -68,9 +62,3 @@ MonoBehaviour:
       Animation: 
       Delay: 1.7
     Wait: 1
-  - Steps:
-    - StepType: 1
-      VFX: {fileID: 9052094474014157690, guid: c28738dd0a6e25744bbd44070f95e164, type: 3}
-      Animation: Hit
-      Delay: 0
-    Wait: 0

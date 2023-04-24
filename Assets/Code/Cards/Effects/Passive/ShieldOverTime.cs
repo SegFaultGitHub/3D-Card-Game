@@ -19,10 +19,10 @@ namespace Code.Cards.Effects.Passive {
 
         public override void UpdateDescription(Player player = null) {
             int value = player == null ? this.Value : player.Compute(null, CallbackType.Shield, player, null, this.Value, PRIORITY);
-            this.Description = new[] {
+            this.Description = new List<string> {
                 $"Gains {value}{SpriteEffectMapping.Get(Effect.Shield)} each turn"
             };
-            if (this.Duration != null) this.Description.AddRange(TurnsString(this.Duration.Value));
+            if (this.Duration != null) this.Description.Add(TurnsString(this.Duration.Value));
         }
 
         public override IEnumerable<CardEffectValues> Run(List<CardEffectValues> _, Character from, Character to) {
